@@ -1,11 +1,22 @@
+/* تعریف متغیرهای CSS برای رنگ‌ها */
+:root {
+    --primary-color: #007bff; /* رنگ اصلی برای دکمه‌ها و لینک‌ها */
+    --secondary-color: #333; /* رنگ متن اصلی */
+    --background-light: #f0f2f5; /* رنگ پس‌زمینه روشن */
+    --background-white: #ffffff; /* رنگ پس‌زمینه سفید */
+    --shadow-light: rgba(0,0,0,0.1); /* سایه روشن */
+    --border-light: #e0e0e0; /* رنگ حاشیه روشن */
+}
+
 /* General Styles */
 body {
     font-family: 'Vazirmatn', sans-serif;
-    direction: rtl;
-    background-color: #f0f2f5;
+    direction: rtl; /* تنظیم جهت نوشتار از راست به چپ */
+    background-color: var(--background-light);
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    color: var(--secondary-color);
 }
 
 .container {
@@ -16,37 +27,47 @@ body {
 
 /* Header */
 .header {
-    background-color: #fff;
+    background-color: var(--background-white);
     padding: 15px 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    border-bottom: 2px solid #e0e0e0;
+    box-shadow: 0 2px 4px var(--shadow-light);
+    border-bottom: 2px solid var(--border-light);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap; /* برای واکنش‌گرا شدن منو */
 }
 
 .header .logo {
     font-size: 1.8em;
     font-weight: bold;
-    color: #333;
+    color: var(--secondary-color);
+    margin-bottom: 10px; /* برای موبایل */
+}
+
+.header .menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .header .menu a {
     text-decoration: none;
     color: #555;
-    margin-right: 20px;
+    margin: 0 15px; /* تنظیم فاصله بین آیتم‌های منو */
     font-weight: bold;
-    transition: color 0.3s;
+    transition: color 0.3s ease-in-out;
+    padding: 5px 0; /* برای بهبود منطقه کلیک */
 }
 
 .header .menu a:hover {
-    color: #007bff;
+    color: var(--primary-color);
 }
 
 /* Hero Section (Banner) */
 .hero {
     position: relative;
-    background-image: url('https://via.placeholder.com/1200x400.png?text=بنر+بزرگ+فروشگاه');
+    /* مطمئن شوید که فایل 7020027.jpg در همان پوشه style.css و index.html قرار دارد */
+    background-image: url('7020027.jpg'); 
     background-size: cover;
     background-position: center;
     height: 400px;
@@ -54,10 +75,12 @@ body {
     margin-top: 20px;
     overflow: hidden;
     display: flex;
+    flex-direction: column; /* برای چیدمان عمودی متن */
     align-items: center;
     justify-content: center;
     color: #fff;
     text-align: center;
+    box-shadow: 0 4px 8px var(--shadow-light);
 }
 
 .hero::before {
@@ -67,22 +90,24 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.5); /* تیره‌تر کردن لایه روی تصویر */
 }
 
 .hero h2 {
     position: relative;
     z-index: 1;
     font-size: 3em;
-    margin: 0;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin: 0 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    line-height: 1.2;
 }
 
 .hero p {
     position: relative;
     z-index: 1;
-    font-size: 1.2em;
-    margin-top: 10px;
+    font-size: 1.3em;
+    margin-top: 15px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
 }
 
 /* Product Categories Section */
@@ -92,41 +117,162 @@ body {
 }
 
 .categories h2 {
-    color: #333;
-    font-size: 2em;
+    color: var(--secondary-color);
+    font-size: 2.2em;
     margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.categories h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
 }
 
 .category-list {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    justify-content: center; /* مرکز قرار گرفتن آیتم‌ها */
+    flex-wrap: wrap; /* برای رفتن به خط بعدی در صفحات کوچک */
+    gap: 20px; /* فاصله بین آیتم‌ها */
 }
 
 .category-item {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 20px;
+    background-color: var(--background-white);
+    border-radius: 12px;
+    box-shadow: 0 6px 12px var(--shadow-light); /* سایه قوی‌تر */
+    padding: 25px;
     text-align: center;
-    margin: 10px;
     width: 200px;
-    transition: transform 0.3s;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+    border: 1px solid var(--border-light);
 }
 
 .category-item:hover {
-    transform: translateY(-10px);
+    transform: translateY(-12px) scale(1.02); /* حرکت به بالا و کمی بزرگتر شدن */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* سایه بیشتر هنگام هاور */
 }
 
 .category-item img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    border: 3px solid var(--primary-color); /* حاشیه رنگی دور تصویر */
+    object-fit: cover; /* برای اطمینان از پوشش کامل تصویر */
 }
 
 .category-item h3 {
-    color: #333;
-    font-size: 1.2em;
+    color: var(--secondary-color);
+    font-size: 1.3em;
     margin: 0;
+}
+
+/* Footer Styles */
+.footer {
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 30px 20px;
+    text-align: center;
+    margin-top: 50px;
+    box-shadow: 0 -2px 4px var(--shadow-light);
+}
+
+.footer p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+.footer .footer-links {
+    margin-top: 15px;
+}
+
+.footer .footer-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer .footer-links a:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* چیدمان ستونی در موبایل */
+        padding-bottom: 10px;
+    }
+
+    .header .logo {
+        margin-bottom: 15px;
+    }
+
+    .header .menu {
+        flex-direction: column; /* منو به صورت ستونی */
+        width: 100%;
+    }
+
+    .header .menu a {
+        margin: 5px 0; /* فاصله عمودی بیشتر */
+        padding: 8px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1); /* جداکننده آیتم‌ها */
+    }
+
+    .header .menu a:last-child {
+        border-bottom: none;
+    }
+
+    .hero {
+        height: 300px; /* ارتفاع کمتر بنر در موبایل */
+    }
+
+    .hero h2 {
+        font-size: 2em; /* کاهش اندازه فونت عنوان بنر */
+    }
+
+    .hero p {
+        font-size: 1em; /* کاهش اندازه فونت پاراگراف بنر */
+    }
+
+    .category-item {
+        width: 160px; /* کوچک‌تر شدن عرض آیتم‌های دسته‌بندی */
+        padding: 20px;
+    }
+
+    .categories h2 {
+        font-size: 1.8em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .hero {
+        height: 250px;
+    }
+
+    .hero h2 {
+        font-size: 1.8em;
+    }
+
+    .hero p {
+        font-size: 0.9em;
+    }
+
+    .category-item {
+        width: 100%; /* آیتم‌های دسته‌بندی تمام عرض را بگیرند */
+        margin: 10px 0;
+    }
 }
