@@ -19,8 +19,8 @@ pipeline {
                 cp -r * $TARGET_DIR/
 
                 # تغییر دسترسی‌ها
-                sudo chown -R www-data:www-data $TARGET_DIR
-                sudo chmod -R 755 $TARGET_DIR
+                chown -R www-data:www-data $TARGET_DIR
+                chmod -R 755 $TARGET_DIR
                 '''
             }
         }
