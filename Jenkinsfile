@@ -13,7 +13,7 @@ pipeline {
                 sh '''
                 echo "Deploying website..."
                 
-                TARGET_DIR=/root/mysite
+                TARGET_DIR=/home/mysite
 
                 # کپی کردن فایل‌ها
                 cp -r * $TARGET_DIR/
