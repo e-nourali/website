@@ -19,7 +19,8 @@ pipeline {
                 cp -r * $TARGET_DIR/
 
                 # تغییر دسترسی‌ها
-                #chown -R www-data:www-data $TARGET_DIR
+                # chown -R www-data:www-data $TARGET_DIR     #deleted
+                
                 chmod -R 755 $TARGET_DIR
                 '''
             }
